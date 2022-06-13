@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import {Container, Navbar} from 'react-bootstrap';
+import TournamentsListPage from './pages/TournamentsListPage';
+import TournamentDetailsPage from './pages/TournamentDetailsPage';
+import TournamentFormPage from './pages/TournamentFormPage';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (<>
+        <Navbar bg="dark" variant="dark" className="mb-4">
+            <Container>
+                <Navbar.Brand href="/">Tourney</Navbar.Brand>
+            </Container>
+        </Navbar>
+        <Container>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<TournamentsListPage/>}/>
+                    <Route path="/tournaments/create" element={<TournamentFormPage/>}/>
+                    <Route path="/tournaments/:slug" element={<TournamentDetailsPage/>}/>
+                </Routes>
+            </BrowserRouter>
+        </Container>
+    </>);
 }
 
 export default App;
